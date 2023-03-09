@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use Carbon\Carbon;
+use COM;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -42,7 +44,14 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $category = Category::create([
+            'id' => $request->input('id'),
+            'name' => $request->input('name'),
+            'updated_at'=> Carbon::now(),
+        ]);
+
+        return redirect('/category');
+
     }
 
     /**
@@ -64,7 +73,11 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Category::find($id);
+
+        return view('category/edit',[
+            'category' => $category,
+        ]);
     }
 
     /**
@@ -74,9 +87,17 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $id = $request->id;
+
+        $category = Category::find($id)
+            ->update([
+            'id' => $request->id,
+            'name' => $request->name,
+            'updated_at'=> Carbon::now(),
+          ]);
+        return redirect()->route('category.index');
     }
 
     /**
@@ -87,6 +108,9 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Category::findOrFail($id)->delete();
+
+        return redirect()->route('category.index')->with('message', 'Xóa sản phẩm thành công!');
+
     }
 }

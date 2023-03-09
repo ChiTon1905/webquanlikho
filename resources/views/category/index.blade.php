@@ -25,8 +25,9 @@
                         <th scope="row">{{ $item['id'] }}</th>
                         <td>{{ $item['name'] }}</td>
                         <td>
-                            <a href="" class="btn btn-primary">Sửa</a>
-                            <a href="" class="btn btn-danger">Xóa</a>
+                            <a href=" {{ route('category.edit',$item->id) }}" class="btn btn-primary">Sửa</a>
+
+                            <a href="{{ route('category.destroy',$item->id) }}" class="btn btn-danger">Xóa</a>
                         </td>
                     </tr>
                 @endforeach
