@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductInController;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
@@ -23,7 +25,7 @@ Route::get('/', function () {
 
 Route::get('/',[AdminController::class, 'index'])->name('index');
 
-
+//category
 Route::get('/category',[CategoryController::class, 'index'])->name('category.index');
 Route::get('/category/insert',[CategoryController::class, 'addCategory'])->name('category.insert');
 Route::post('/category/insert/store-category',[CategoryController::class,'store'])->name('category.store');
@@ -31,6 +33,7 @@ Route::get('/category/edit-{id}',[CategoryController::class, 'edit'])->name('cat
 Route::post('/category/update',[CategoryController::class,'update'])->name('category.update');
 Route::get('/category/{id}',[CategoryController::class,'destroy'])->name('category.destroy');
 
+//product
 Route::get('/product',[ProductController::class,'index'])->name('product.index');
 Route::get('/product/insert',[ProductController::class,'create'])->name('product.create');
 Route::post('/product/insert/store-product',[ProductController::class,'store'])->name('product.store');
@@ -38,3 +41,12 @@ Route::get('/product/edit-{id}',[ProductController::class, 'edit'])->name('produ
 Route::post('/product/update',[ProductController::class,'update'])->name('product.update');
 Route::get('/product/{id}',[ProductController::class,'destroy'])->name('product.destroy');
 
+//product_in
+Route::get('/product_in',[ProductInController::class,'index'])->name('productIn.index');
+Route::get('/product_in/insert',[ProductInController::class,'create'])->name('productIn.create');
+Route::post('/product_in/insert/store-product_in',[ProductInController::class,'store'])->name('productIn.store');
+Route::get('/product_in/edit-{id}',[ProductInController::class, 'edit'])->name('productIn.edit');
+Route::post('/product_in/update',[ProductInController::class,'update'])->name('productIn.update');
+Route::get('/product_in/{id}',[ProductInController::class,'destroy'])->name('productIn.destroy');
+
+Route::get('/PDF/exportPDF',[PDFController::class,'exportPDF'])->name('exportPDF');

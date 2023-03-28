@@ -84,6 +84,19 @@
                 </div>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link " href="#" data-toggle="collapse" data-target="#collapse4"
+                    aria-expanded="true" aria-controls="collapse4">
+                    <span>Quản lí nhập hàng</span>
+                </a>
+                <div id="collapse4" class="collapse" aria-labelledby="heading4" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{ route('productIn.index') }}">Danh sách</a>
+                        <a class="collapse-item" href="{{ route('productIn.create') }}">Thêm</a>
+                    </div>
+                </div>
+            </li>
+
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 

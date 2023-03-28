@@ -1,10 +1,10 @@
 @extends('template')
 @section('page_title')
-    Update
+    Thêm
 @endsection
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Admin/</span> Update SP</h4>
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Admin/</span> Nhập hàng</h4>
         <div class="text-center">
             @if ($errors->any())
             <div class="text-danger h3 text-lg-start fw-bold">
@@ -20,56 +20,63 @@
         <div class="col-xxl">
             <div class="card mb-4">
                 <div class="card-header d-flex align-items-center justify-content-between">
-                    <h5 class="mb-0">Update mới</h5>
+                    <h5 class="mb-0">Nhập hàng</h5>
                     {{-- <small class="text-muted float-end">Default label</small> --}}
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('product.update') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('productIn.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="basic-default-name">ID</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="id" name="id"
-                                    value="{{ $product->id }}" readonly/>
+                                    placeholder="mã" />
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="basic-default-name">Chọn loại</label>
+                            <label class="col-sm-2 col-form-label" for="basic-default-name">Chọn sản phẩm</label>
                             <div class="col-sm-10">
-                                <select class="form-select" id="category_id" name="category_id"
+                                <select class="form-select" id="product_id" name="product_id"
                                     aria-label="Default select example">
-                                    <option>Chọn loại sản phẩm</option>
-                                    @foreach ($categories as $loai)
-                                        <option value="{{ $loai->id }}">{{ $loai->name }}</option>
+                                    <option>Chọn sản phẩm</option>
+                                    @foreach ($products as $item)
+                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
                                     @endforeach
                                 </select>
 
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="basic-default-name">Tên sản phẩm</label>
+                            <label class="col-sm-2 col-form-label" for="basic-default-name">Chọn nhà cung cấp</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="name" name="name"
-                                    value = "{{ $product->name }}" />
+                                <select class="form-select" id="supplier_id" name="supplier_id"
+                                    aria-label="Default select example">
+                                    <option>Chọn nhà cung cấp</option>
+                                    @foreach ($suppliers as $item)
+                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                    @endforeach
+                                </select>
+
                             </div>
                         </div>
-                        <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="basic-default-name">Giá</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="price" name="price"
-                                    value="{{ $product->price }}" />
-                            </div>
                         </div>
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="basic-default-name">Số lượng</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="qty" name="qty"
-                                    value="{{ $product->qty }}" />
+                                    placeholder="số lượng" />
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="basic-default-name">Ngày nhập</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="date" name="date"
+                                    placeholder="Ngày" />
                             </div>
                         </div>
                         <div class="row justify-content-end">
                             <div class="col-sm-10">
-                                <button type="submit" class="btn btn-primary">Update</button>
+                                <button type="submit" class="btn btn-primary">Thêm</button>
                             </div>
                         </div>
                     </form>
