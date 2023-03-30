@@ -12,6 +12,7 @@
     <div>
         @include('template')
         <a href="{{ route('exportPDF') }}" class="btn btn-primary">Export PDF</a>
+        <a href="{{ route('exportExcel') }}" class="btn btn-primary">Export Excel</a>
         <table class="table">
             <thead>
                 <tr>

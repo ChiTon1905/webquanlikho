@@ -152,7 +152,7 @@ class ProductInController extends Controller
     {
         Product_in::findOrFail($id)->delete();
 
-        return redirect()->route('productIn.index')->with('message', 'Xóa sản phẩm thành công!');
+        return redirect()->route('productIn.index')->with('message', 'Xóa thành công!');
     }
 
 }

@@ -2,9 +2,11 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductInController;
+use App\Http\Controllers\ProductOutController;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
@@ -49,4 +51,19 @@ Route::get('/product_in/edit-{id}',[ProductInController::class, 'edit'])->name('
 Route::post('/product_in/update',[ProductInController::class,'update'])->name('productIn.update');
 Route::get('/product_in/{id}',[ProductInController::class,'destroy'])->name('productIn.destroy');
 
+//product_out
+Route::get('/product_out',[ProductOutController::class,'index'])->name('productOut.index');
+Route::get('/product_out/insert',[ProductOutController::class,'create'])->name('productOut.create');
+Route::post('/product_out/insert/store-product_out',[ProductOutController::class,'store'])->name('productOut.store');
+Route::get('/product_out/edit-{id}',[ProductOutController::class, 'edit'])->name('productOut.edit');
+Route::post('/product_out/update',[ProductOutController::class,'update'])->name('productOut.update');
+Route::get('/product_out/{id}',[ProductOutController::class,'destroy'])->name('productOut.destroy');
+
+//PDF
 Route::get('/PDF/exportPDF',[PDFController::class,'exportPDF'])->name('exportPDF');
+Route::get('/PDF/exportPDFProductOut',[PDFController::class,'exportPDFProductOut'])->name('exportPDFProductOut');
+
+//EXCEL
+Route::get('/excel/export', [ExcelController::class, 'export'])->name('exportExcel');
+Route::get('/excel/exportProductOut', [ExcelController::class, 'exportProductOut'])->name('exportExcelProductOut');
+

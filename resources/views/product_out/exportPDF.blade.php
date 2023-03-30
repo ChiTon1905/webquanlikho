@@ -31,13 +31,13 @@
 </head>
 <body>
 
-<h1>Hóa đơn nhập hàng</h1>
+<h1>Hóa đơn bán hàng</h1>
 
 <table id="customers">
   <tr>
     <th>ID</th>
     <th>product_name</th>
-    <th>supplier_name</th>
+    <th>customer_name</th>
     <th>qty</th>
     <th>date</th>
   </tr>
@@ -45,7 +45,7 @@
   <tr>
     <td>{{ $item->id }}</td>
     <td>{{ $item->product->name }}</td>
-    <td>{{ $item->supplier->name }}</td>
+    <td>{{ $item->customer->name }}</td>
     <td>{{ $item->qty }}</td>
     <td>{{ $item->date }}</td>
   </tr>
