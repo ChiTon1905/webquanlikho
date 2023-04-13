@@ -12,6 +12,7 @@
     <title>@yield('page_title')</title>
 
     <!-- Custom fonts for this template-->
+    @include('cdn')
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,
@@ -36,7 +37,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fa-brands fa-accessible-icon"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">Admin <sup>Ton</sup></div>
+                <div class="sidebar-brand-text mx-3">Ton<sup>inventory</sup></div>
             </a>
 
             <!-- Divider -->
@@ -109,6 +110,21 @@
                     </div>
                 </div>
             </li>
+            @if (Auth::user()->userType == 1)
+            <li class="nav-item">
+                <a class="nav-link " href="#" data-toggle="collapse" data-target="#collapse6"
+                    aria-expanded="true" aria-ontrols="collapse6">
+                    <span>Quản lí User</span>
+                </a>
+                <div id="collapse6" class="collapse" aria-labelledby="heading6" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{ route('user.index') }}">Danh sách</a>
+                        <a class="collapse-item" href="{{ route('user.create') }}">Thêm</a>
+                    </div>
+                </div>
+            </li>
+            @endif
+            
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -220,7 +236,7 @@
                         </div>
                         <div class="modal-footer">
                             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                            <a class="btn btn-primary" href="login.html">Logout</a>
+                            <a class="btn btn-primary" href="{{ route('logout') }}">Logout</a>
                         </div>
                     </div>
                 </div>
