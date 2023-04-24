@@ -3,11 +3,14 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ExcelController;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductInController;
 use App\Http\Controllers\ProductOutController;
+use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UserController;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
@@ -32,6 +35,8 @@ Route::get('/index',[AdminController::class, 'index'])->name('index');
 Route::get('/login',[AuthController::class,'Login'])->name('login');
 Route::post('/login',[AuthController::class,'Checklogin'])->name('checklogin');
 
+Route::get('/mail', [MailController::class, 'sendMail'])->name('mail.send');
+
 Route::middleware('login')->group(function (){
     Route::get('logout',[AuthController::class,'LogOut'])->name('logout');
 
@@ -50,6 +55,22 @@ Route::middleware('login')->group(function (){
     Route::get('/category/edit-{id}',[CategoryController::class, 'edit'])->name('category.edit');
     Route::post('/category/update',[CategoryController::class,'update'])->name('category.update');
     Route::get('/category/{id}',[CategoryController::class,'destroy'])->name('category.destroy');
+
+    //supplier
+     Route::get('/supplier',[SupplierController::class, 'index'])->name('supplier.index');
+     Route::get('/supplier/insert',[SupplierController::class, 'create'])->name('supplier.create');
+     Route::post('/supplier/insert/store-supplier',[SupplierController::class,'store'])->name('supplier.store');
+     Route::get('/supplier/edit-{id}',[SupplierController::class, 'edit'])->name('supplier.edit');
+     Route::post('/supplier/update',[SupplierController::class,'update'])->name('supplier.update');
+     Route::get('/supplier/{id}',[SupplierController::class,'destroy'])->name('supplier.destroy');
+
+    //customer
+    Route::get('/customer',[CustomerController::class, 'index'])->name('customer.index');
+    Route::get('/customer/insert',[CustomerController::class, 'create'])->name('customer.create');
+    Route::post('/customer/insert/store-customer',[CustomerController::class,'store'])->name('customer.store');
+    Route::get('/customer/edit-{id}',[CustomerController::class, 'edit'])->name('customer.edit');
+    Route::post('/customer/update',[CustomerController::class,'update'])->name('customer.update');
+    Route::get('/customer/{id}',[CustomerController::class,'destroy'])->name('customer.destroy');
 
     //product
     Route::get('/product',[ProductController::class,'index'])->name('product.index');
@@ -84,10 +105,10 @@ Route::middleware('login')->group(function (){
     Route::get('/excel/exportProductOut', [ExcelController::class, 'exportProductOut'])->name('exportExcelProductOut');
 });
 
- 
 
 
- 
+
+
 
 
 

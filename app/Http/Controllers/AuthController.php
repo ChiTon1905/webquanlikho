@@ -18,7 +18,7 @@ class AuthController extends Controller
             else
                 return redirect()->route('index');
         }
-       
+
         return redirect()->route('login')->with('error','Thông tin đăng nhập sai!');
     }
 

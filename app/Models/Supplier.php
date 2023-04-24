@@ -22,5 +22,7 @@ class Supplier extends Model
         'email',
         'telepon',
     ];
-
+    public function product(){
+        return $this->hasMany(Product::class);
+    }
 }

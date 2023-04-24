@@ -86,6 +86,32 @@
             </li>
 
             <li class="nav-item">
+                <a class="nav-link " href="#" data-toggle="collapse" data-target="#collapseThree1"
+                    aria-expanded="true" aria-controls="collapseThree">
+                    <span>Quản lí nhà cung cấp</span>
+                </a>
+                <div id="collapseThree1" class="collapse" aria-labelledby="headingThree1" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{ route('supplier.index') }}">Danh sách </a>
+                        <a class="collapse-item" href="{{ route('supplier.create') }}">Thêm</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link " href="#" data-toggle="collapse" data-target="#collapseThree2"
+                    aria-expanded="true" aria-controls="collapseThree">
+                    <span>Quản lí khách hàng</span>
+                </a>
+                <div id="collapseThree2" class="collapse" aria-labelledby="headingThree2" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{ route('customer.index') }}">Danh sách </a>
+                        <a class="collapse-item" href="{{ route('customer.create') }}">Thêm</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
                 <a class="nav-link " href="#" data-toggle="collapse" data-target="#collapse4"
                     aria-expanded="true" aria-controls="collapse4">
                     <span>Quản lí nhập hàng</span>
@@ -124,7 +150,7 @@
                 </div>
             </li>
             @endif
-            
+
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">

@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\Product_out;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ProductOutController extends Controller
 {
@@ -59,7 +60,7 @@ class ProductOutController extends Controller
             'qty'            => 'required',
             'date'        => 'required'
         ]);
-
+        $customer = Customer::findOrFail($request->customer_id);
         $product = Product::findOrFail($request->product_id);
         $product->qty -= $request->qty;
         if($product->qty <= 0){
@@ -76,6 +77,21 @@ class ProductOutController extends Controller
             ]);
             $product->save();
 
+            //send mail
+            $name = 'Nhan vien Inventory';
+            $product_name = $product->name;
+            $product_qty = $product->qty;
+
+            $customer_name = $customer->name;
+            $price = $product->qty * $product->price;
+            $date = $request->date;
+            Mail::send('email.contact-form',
+            compact('name', 'product_name','product_qty','customer_name','price','date')
+            , function($email) use($name){
+                $email->subject('Chi tiết đơn hàng');
+                $email->to('toncodedemo@gmail.com',$name);
+            });
+            //toncodedemo@gmail.com nay la demo neu ban hang thi lay email cua table khach hang(customer)
             return redirect()->route('productOut.index');
         }
 

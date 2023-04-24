@@ -21,6 +21,9 @@ class LoginMiddleware
             if(Auth::user()->userType == 1){
                 return $next($request);
             }
+            else {
+                return $next($request);
+            }
             return redirect()->route('login')->with('Error','Không có quyền truy cập!');
         }
         return redirect()->route('login')->with('Error','Không có quyền truy cập!');

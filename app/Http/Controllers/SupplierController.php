@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
+use App\Models\Supplier;
 use Carbon\Carbon;
-use COM;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class SupplierController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,14 +15,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
-        return view('category/index',[
-        'Categories' => $categories,
+        $suppliers = Supplier::all();
+        return view('supplier.index',[
+        'Suppliers' => $suppliers,
         ]);
-    }
-
-    public function addCategory(){
-        return view('category/insert');
     }
 
     /**
@@ -33,7 +28,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('supplier.insert');
     }
 
     /**
@@ -44,14 +39,16 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $category = Category::create([
+        $supplier = Supplier::create([
             'id' => $request->input('id'),
             'name' => $request->input('name'),
+            'address' => $request->input('address'),
+            'email' => $request->input('email'),
+            'telepon' => $request->input('telepon'),
             'updated_at'=> Carbon::now(),
         ]);
 
-        return redirect('/category');
-
+        return redirect()->route('supplier.index');
     }
 
     /**
@@ -73,10 +70,10 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $category = Category::find($id);
+        $supplier = Supplier::find($id);
 
-        return view('category/edit',[
-            'category' => $category,
+        return view('supplier.edit',[
+            'supplier' => $supplier,
         ]);
     }
 
@@ -91,13 +88,16 @@ class CategoryController extends Controller
     {
         $id = $request->id;
 
-        $category = Category::find($id)
+        $supplier = Supplier::find($id)
             ->update([
             'id' => $request->id,
             'name' => $request->name,
+            'address' => $request->address,
+            'email' => $request->email,
+            'telepon' => $request->telepon,
             'updated_at'=> Carbon::now(),
           ]);
-        return redirect()->route('category.index');
+        return redirect()->route('supplier.index');
     }
 
     /**
@@ -108,9 +108,10 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        Category::findOrFail($id)->delete();
 
-        return redirect()->route('category.index')->with('message', 'Xóa thành công!');
+        Supplier::findOrFail($id)->delete();
+
+        return redirect()->route('supplier.index')->with('message', 'Xóa thành công!');
 
     }
 }

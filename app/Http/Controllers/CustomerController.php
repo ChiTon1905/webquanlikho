@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
+use App\Models\Customer;
 use Carbon\Carbon;
-use COM;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class CustomerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,14 +15,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
-        return view('category/index',[
-        'Categories' => $categories,
+        $customers = Customer::all();
+        return view('customer.index',[
+        'Customers' => $customers,
         ]);
-    }
-
-    public function addCategory(){
-        return view('category/insert');
     }
 
     /**
@@ -33,7 +28,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('customer.insert');
     }
 
     /**
@@ -44,14 +39,17 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $category = Category::create([
+
+        $customer = Customer::create([
             'id' => $request->input('id'),
             'name' => $request->input('name'),
+            'address' => $request->input('address'),
+            'email' => $request->input('email'),
+            'telepon' => $request->input('telepon'),
             'updated_at'=> Carbon::now(),
         ]);
 
-        return redirect('/category');
-
+        return redirect()->route('customer.index');
     }
 
     /**
@@ -62,7 +60,7 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -73,10 +71,10 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $category = Category::find($id);
+         $customer = Customer::find($id);
 
-        return view('category/edit',[
-            'category' => $category,
+        return view('customer.edit',[
+            'customer' => $customer,
         ]);
     }
 
@@ -91,13 +89,16 @@ class CategoryController extends Controller
     {
         $id = $request->id;
 
-        $category = Category::find($id)
+        $customer = Customer::find($id)
             ->update([
             'id' => $request->id,
             'name' => $request->name,
+            'address' => $request->address,
+            'email' => $request->email,
+            'telepon' => $request->telepon,
             'updated_at'=> Carbon::now(),
           ]);
-        return redirect()->route('category.index');
+        return redirect()->route('customer.index');
     }
 
     /**
@@ -108,9 +109,9 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        Category::findOrFail($id)->delete();
+        Customer::findOrFail($id)->delete();
 
-        return redirect()->route('category.index')->with('message', 'Xóa thành công!');
+        return redirect()->route('customer.index')->with('message', 'Xóa thành công!');
 
     }
 }
