@@ -80,7 +80,7 @@ class ProductOutController extends Controller
             //send mail
             $name = 'Nhan vien Inventory';
             $product_name = $product->name;
-            $product_qty = $product->qty;
+            $product_qty = $request->qty;
 
             $customer_name = $customer->name;
             $price = $product->qty * $product->price;
